@@ -1,0 +1,33 @@
+services:
+  shubh-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shubh-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    networks:
+      - isr-network
+      - common-db-net
+    volumes:
+      - ./public/uploads:/app/public/uploads
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared-isr
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token YOUR_TUNNEL_TOKEN
+    depends_on:
+      - shubh-app
+    networks:
+      - isr-network
+
+networks:
+  shubh-network:
+    driver: bridge
+
+  common-db-net:
+    external: true
