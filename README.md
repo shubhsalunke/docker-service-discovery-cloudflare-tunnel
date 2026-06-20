@@ -118,7 +118,7 @@ Expected:
 
 ```text
 shubh-app
-cloudflared-isr
+cloudflared-shubh
 ```
 
 ---
@@ -132,7 +132,7 @@ docker network ls
 Expected Network:
 
 ```text
-isr-network
+shubh-network
 ```
 
 ---
@@ -206,7 +206,7 @@ http://shubh-app:3000
 # Step 8 — Restart Tunnel Container
 
 ```bash
-docker restart cloudflared-isr
+docker restart cloudflared-shubh
 ```
 
 ---
@@ -256,7 +256,7 @@ internally.
 Docker resolves:
 
 ```text
-isr-app
+shubh-app
 ```
 
 to actual container IP automatically.
@@ -270,7 +270,7 @@ No need to manually manage private IPs.
 ## Check Container IP
 
 ```bash
-docker inspect isr-app
+docker inspect shubh-app
 ```
 
 ---
@@ -286,7 +286,7 @@ docker exec -it cloudflared-shubh nslookup shubh-app
 ## Test Ping Between Containers
 
 ```bash
-docker exec -it cloudflared-isr ping shubh-app
+docker exec -it cloudflared-shubh ping shubh-app
 ```
 
 ---
