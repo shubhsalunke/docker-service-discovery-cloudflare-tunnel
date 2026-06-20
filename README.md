@@ -29,7 +29,7 @@ http://shubh-app:3000
 ```text
 User
  ↓
-eye.main.com
+shubh.main.com
  ↓
 Cloudflare
  ↓
